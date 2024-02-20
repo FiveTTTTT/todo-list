@@ -1,8 +1,10 @@
 <h4 class="text-3xl font-bold underline">Testing NgRx</h4>
+<div class="flex flex-row justify-around w-full ">
+  <app-tasks-column class="w-3/12" [tasks]="(tasksNOTSTARTED$ | async)!" status="NOT_STARTED"></app-tasks-column>
+  <app-tasks-column class="w-3/12" [tasks]="(tasksINPROGRESS$ | async)!" status="IN_PROGRESS"></app-tasks-column>
+  <app-tasks-column class="w-3/12" [tasks]="(tasksDONE$ | async)!" status="DONE"></app-tasks-column>
 
-<app-tasks-column [tasks]="(tasksNOTSTARTED$ | async)!" status="NOT_STARTED"></app-tasks-column>
-<app-tasks-column [tasks]="(tasksINPROGRESS$ | async)!" status="IN_PROGRESS"></app-tasks-column>
-<app-tasks-column [tasks]="(tasksDONE$ | async)!" status="DONE"></app-tasks-column>
+</div>
 
 <ul>
   <li *ngFor="let task of tasksDONE$ | async">
