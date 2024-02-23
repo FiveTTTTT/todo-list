@@ -1,33 +1,5 @@
-<h4 class="text-3xl font-bold underline">Testing NgRx</h4>
-<app-task-main [allTasks]="(allTasks$ | async)!" > </app-task-main>
-<!-- <div class="flex flex-row justify-around w-full min-h-96">
-  <app-tasks-column class="w-4/12 m-1" [tasks]="(tasksNOTSTARTED$ | async)!" [status]="TaskStatus.NOT_STARTED"></app-tasks-column>
-  <app-tasks-column class="w-4/12 m-1" [tasks]="(tasksINPROGRESS$ | async)!" [status]="TaskStatus.IN_PROGRESS"></app-tasks-column>
-  <app-tasks-column class="w-4/12 m-1" [tasks]="(tasksFINISHED$ | async)!" [status]="TaskStatus.FINISHED"></app-tasks-column>
-
-</div> -->
-
-<div class="col-md-6">
-  <div class="card p-4 shadow-sm">
-    <form #myform="ngForm" (ngSubmit)="addTask(myform)">
-      <div class="form-group">
-        <label for="description">Title</label>
-        <input type="text" class="form-control" id="title" name="title" ngModel>
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newTask.status">
-      </div>
-      <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" id="status" name="status" ngModel>
-          <option value="NOT_STARTED">NOT STARTED</option>
-          <option value="IN_PROGRESS">IN PROGRESS</option>
-          <option value="FINISHED">FINISHED</option>
-        </select>
-      </div>
-      
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+<div class="container mx-auto p-4">
+  <h1 class="text-4xl font-bold">NgRx Task Management</h1>
+  <app-task-main > </app-task-main>
+  <app-task-form></app-task-form>
 </div>

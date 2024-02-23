@@ -16,29 +16,10 @@ export class AppComponent implements OnInit {
 
   allTasks$: Observable<Array<Task>> | undefined;
   TaskStatus = TaskStatus;
-
-  newTask: Task = {
-    id: 0,
-    title: '',
-    description: '',
-    status: TaskStatus.NOT_STARTED,
-    color: ''
-  };
-
+  
   constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.store.select((store) => store.tasks);
-  }
-  addTask(form: NgForm) {
-    this.store.dispatch(new AddTaskAction(form.value));    
-    form.reset();
-    this.newTask = {
-      id: 0,
-      title: '',
-      description: '',
-      status: TaskStatus.NOT_STARTED,
-      color: ''
-    };
   }
 }

@@ -1,1 +1,33 @@
-<p>task-form works!</p>
+<div class="col-md-6">
+  <h2 class="text-center">Add Task</h2>
+  <div class="card p-4 shadow-sm">
+    <form #myform="ngForm" (ngSubmit)="addTask(myform)">
+      <div class="form-group">
+        <!-- <label for="description">Title</label> -->
+        <input type="text"
+          class="form-control border-slate-200 focus-visible:outline-none border-b-2 focus-visible:border-blue-200"
+          id="title" name="title" placeholder="Title" ngModel>
+      </div>
+      <div class="form-group">
+        <!-- <label for="description">Description</label> -->
+        <input type="text"
+          class="form-control border-slate-200 focus-visible:outline-none border-b-2 focus-visible:border-blue-200"
+          id="description" name="description" placeholder="Description" ngModel>
+      </div>
+      <div class="form-group relative inline-flex">
+        <label for="status">Status</label>
+        <select class="form-control appearance-none bg-gray-200 border-2 border-gray-200 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="status" name="status" ngModel>
+          <option value="NOT_STARTED">NOT STARTED</option>
+          <option value="IN_PROGRESS">IN PROGRESS</option>
+          <option value="FINISHED">FINISHED</option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+            <!-- Utilisez une icône de flèche vers le bas ou tout autre indicateur visuel -->
+            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12l-8-8-2 2 10 10 10-10-2-2-8 8z"/></svg>
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

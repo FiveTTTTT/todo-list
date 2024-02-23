@@ -10,14 +10,20 @@ import { UpdateTaskStatusAction } from '../../store/actions/task.action';
   styleUrl: './task-item.component.css'
 })
 export class TaskItemComponent {
-  @Input() task: Task | undefined;
+  @Input() taskId: Number | undefined;
   // @Output() deleteTask = new EventEmitter<number>();
   // @Output() updateTask = new EventEmitter<Task>();
   // @Output() moveTask = new EventEmitter<TaskStatus>();
   @Output() editTaskStatus = new EventEmitter<Task>();
   // @Output() viewTask = new EventEmitter<Task>();
 
+  task: Task | undefined;
   constructor(private store: Store<State>) { }
+  ngOnInit() {
+    this.store.select('tasks').subscribe((tasks) => {
+      this.task = tasks.find((task) => task.id === this.taskId);
+    });
+  }
 
   // onTaskStatusChange() {
   //   // Émettez l'événement editTaskStatus avec la nouvelle valeur du statut
