@@ -1,5 +1,5 @@
 import { Task, TaskStatus } from "../models/task.model";
-import { AddTaskAction, TaskActionTypes } from "../actions/task.action";
+import { AddTaskAction, TaskActionTypes, UpdateTaskAction, UpdateTaskStatusAction } from "../actions/task.action";
 import { Action } from "@ngrx/store";
 
 const initialState: Array<Task> = [
@@ -111,6 +111,7 @@ const initialState: Array<Task> = [
 ];
 
 export type TaskActions = AddTaskAction | Action;
+export type TaskState = Array<Task>;
 
 export function TaskReducer(
     state: Array<Task> = initialState,
@@ -119,6 +120,13 @@ export function TaskReducer(
     switch (action.type) {
         case TaskActionTypes.ADD_TASK:
             return [...state, (action as AddTaskAction).payload];
+        case TaskActionTypes.UPDATE_TASK:
+            const updatedTask = (action as UpdateTaskAction).payload;
+            return state.map(task => (task.id === updatedTask.id) ? updatedTask : task);
+        case TaskActionTypes.UPDATE_TASK_STATUS:
+            const { taskId, newStatus } = (action as UpdateTaskStatusAction).payload;
+            return state.map(task => (task.id === taskId) ? { ...task, status: newStatus } : task);
+
         default:
             return state;
     }

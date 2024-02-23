@@ -9,12 +9,16 @@ import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { TasksColumnComponent } from './components/tasks-column/tasks-column.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
+import { TaskMainComponent } from './components/task-main/task-main.component';
+import { TaskFormComponent } from './components/task-form/task-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TasksColumnComponent,
-    TaskItemComponent
+    TaskItemComponent,
+    TaskMainComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

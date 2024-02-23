@@ -15,19 +15,30 @@ export class AppComponent implements OnInit {
   title = 'todo-list';
 
   allTasks$: Observable<Array<Task>> | undefined;
-  tasksNOTSTARTED$: Observable<Array<Task>> | undefined;
-  tasksINPROGRESS$: Observable<Array<Task>> | undefined;
-  tasksDONE$: Observable<Array<Task>> | undefined;
-  constructor(private store: Store<State>) {}
+  TaskStatus = TaskStatus;
 
-  ngOnInit(): void {    
+  newTask: Task = {
+    id: 0,
+    title: '',
+    description: '',
+    status: TaskStatus.NOT_STARTED,
+    color: ''
+  };
+
+  constructor(private store: Store<State>) { }
+
+  ngOnInit(): void {
     this.allTasks$ = this.store.select((store) => store.tasks);
-    this.tasksNOTSTARTED$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.NOT_STARTED));
-    this.tasksINPROGRESS$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.IN_PROGRESS));
-    this.tasksDONE$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.FINISHED));    
   }
   addTask(form: NgForm) {
-    this.store.dispatch(new AddTaskAction(form.value));
+    this.store.dispatch(new AddTaskAction(form.value));    
     form.reset();
-}
+    this.newTask = {
+      id: 0,
+      title: '',
+      description: '',
+      status: TaskStatus.NOT_STARTED,
+      color: ''
+    };
+  }
 }
