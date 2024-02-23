@@ -1,6 +1,6 @@
 <div>
   <h2 class="flex justify-center w-full text-center font-bold bg-slate-300 mb-1 text-slate-800 p-2">{{status}}</h2>
-  <ul class="grid md:grid-cols-1 lg:grid-cols-2 gap-4 p-2"
+  <ul class="grid sm:grid-cols-3 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2"
     [ngClass]="{'bg-slate-300':status == TaskStatus.FINISHED, 'bg-slate-50': status != TaskStatus.FINISHED}">
     <app-task-item class="w-full h-full" *ngFor="let task of tasks" [taskId]="task.id"
       (editTaskStatus)="onEditTaskStatus($event)"></app-task-item>
