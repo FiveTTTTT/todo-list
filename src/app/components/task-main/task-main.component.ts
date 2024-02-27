@@ -10,7 +10,7 @@ import { State } from '../../store/models/state.model';
   styleUrl: './task-main.component.css'
 })
 export class TaskMainComponent {
-  // @Input() allTasks: Readonly<Array<Task>> = [];
+  columnToShow = TaskStatus.NOT_STARTED;
 
   allTasks$: Observable<Array<Task>> | undefined;
   TaskStatus = TaskStatus;
@@ -20,12 +20,14 @@ export class TaskMainComponent {
 
   constructor(private store: Store<State>) { }
 
-  ngOnInit(): void {
-    // console.log(this.allTasks[0].status === TaskStatus.NOT_STARTED);
-  
+  ngOnInit(): void {  
     this.allTasks$ = this.store.select((store) => store.tasks);
     this.tasksNOTSTARTED$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.NOT_STARTED));
     this.tasksINPROGRESS$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.IN_PROGRESS));
     this.tasksFINISHED$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.FINISHED));    
+  }
+
+  switchColumn(column: TaskStatus) {
+    this.columnToShow = column;
   }
 }

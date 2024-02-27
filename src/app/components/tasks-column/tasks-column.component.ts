@@ -6,14 +6,14 @@ import { UpdateTaskAction } from '../../store/actions/task.action';
 @Component({
   selector: 'app-tasks-column',
   templateUrl: './tasks-column.component.html',
-  styleUrl: './tasks-column.component.css'
+  styleUrl: './tasks-column.component.css',
 })
 export class TasksColumnComponent {
   @Input() tasks: Readonly<Array<Task>> = [];
   @Input() status: String | undefined;
   TaskStatus = TaskStatus;
 
-  constructor(private store: Store) { }
+  constructor(private store: Store) {}
 
   onEditTaskStatus(task: Task) {
     this.store.dispatch(new UpdateTaskAction(task));

@@ -1,9 +1,23 @@
-<div class="flex flex-row justify-around w-full min-h-96">
-  <app-tasks-column class="w-4/12 sm:w-full m-1" [ngClass]="{'max-sm:hidden': true}" [tasks]="(tasksNOTSTARTED$ | async)!" [status]="TaskStatus.NOT_STARTED">
+<div class="flex flex-row justify-around w-full min-h-96 max-h-full">
+  <app-tasks-column
+    class="w-4/12 max-sm:w-full m-1"
+    [ngClass]="{ 'max-sm:hidden': columnToShow !== TaskStatus.NOT_STARTED }"
+    [tasks]="(tasksNOTSTARTED$ | async)!"
+    [status]="TaskStatus.NOT_STARTED"
+  >
   </app-tasks-column>
-  <app-tasks-column class="w-4/12 sm:w-full m-1" [ngClass]="{'sm:hidden': true}" [tasks]="(tasksINPROGRESS$ | async)!" [status]="TaskStatus.IN_PROGRESS">
+  <app-tasks-column
+    class="w-4/12 max-sm:w-full m-1"
+    [ngClass]="{ 'max-sm:hidden': columnToShow !== TaskStatus.IN_PROGRESS }"
+    [tasks]="(tasksINPROGRESS$ | async)!"
+    [status]="TaskStatus.IN_PROGRESS"
+  >
   </app-tasks-column>
-  <app-tasks-column class="w-4/12 sm:w-full m-1" [ngClass]="{'s:hidden': true}" [tasks]="(tasksFINISHED$ | async)!" [status]="TaskStatus.FINISHED">
+  <app-tasks-column
+    class="w-4/12 max-sm:w-full m-1"
+    [ngClass]="{ 'max-sm:hidden': columnToShow !== TaskStatus.FINISHED }"
+    [tasks]="(tasksFINISHED$ | async)!"
+    [status]="TaskStatus.FINISHED"
+  >
   </app-tasks-column>
-
 </div>
