@@ -2,9 +2,14 @@
 module.exports = {
   content: ['./src/**/*.{html,ts}', './projects/**/*.{html,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        'half-screen': '50vh',
+      },
+    },
     container: {
-      center: true,      
+      center: true,
+           
     },
   },
   plugins: [],

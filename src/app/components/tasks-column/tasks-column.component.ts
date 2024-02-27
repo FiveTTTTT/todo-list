@@ -18,4 +18,10 @@ export class TasksColumnComponent {
   onEditTaskStatus(task: Task) {
     this.store.dispatch(new UpdateTaskAction(task));
   }
+
+  currentColumn: string | undefined;
+
+  showColumn(column: string) {
+    this.currentColumn = column;
+  }
 }
