@@ -7,7 +7,7 @@ import { State } from '../../store/models/state.model';
 @Component({
   selector: 'app-task-main',
   templateUrl: './task-main.component.html',
-  styleUrl: './task-main.component.css'
+  styleUrl: './task-main.component.css',
 })
 export class TaskMainComponent {
   columnToShow = TaskStatus.NOT_STARTED;
@@ -18,13 +18,19 @@ export class TaskMainComponent {
   tasksINPROGRESS$: Observable<Array<Task>> | undefined;
   tasksFINISHED$: Observable<Array<Task>> | undefined;
 
-  constructor(private store: Store<State>) { }
+  constructor(private store: Store<State>) {}
 
-  ngOnInit(): void {  
+  ngOnInit(): void {
     this.allTasks$ = this.store.select((store) => store.tasks);
-    this.tasksNOTSTARTED$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.NOT_STARTED));
-    this.tasksINPROGRESS$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.IN_PROGRESS));
-    this.tasksFINISHED$ = this.store.select((store) => store.tasks.filter((task) => task.status === TaskStatus.FINISHED));    
+    this.tasksNOTSTARTED$ = this.store.select((store) =>
+      store.tasks.filter((task) => task.status === TaskStatus.NOT_STARTED)
+    );
+    this.tasksINPROGRESS$ = this.store.select((store) =>
+      store.tasks.filter((task) => task.status === TaskStatus.IN_PROGRESS)
+    );
+    this.tasksFINISHED$ = this.store.select((store) =>
+      store.tasks.filter((task) => task.status === TaskStatus.FINISHED)
+    );
   }
 
   switchColumn(column: TaskStatus) {

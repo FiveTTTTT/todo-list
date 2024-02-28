@@ -19,20 +19,20 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     TasksColumnComponent,
     TaskItemComponent,
     TaskMainComponent,
-    TaskFormComponent
+    TaskFormComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, 
+    FormsModule,
     StoreModule.forRoot({
-      tasks: TaskReducer
+      tasks: TaskReducer,
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // restreint l'accès au DevTools en mode production
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

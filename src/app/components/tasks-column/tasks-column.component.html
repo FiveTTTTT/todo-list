@@ -15,11 +15,12 @@
       'bg-slate-100': status != TaskStatus.FINISHED
     }"
   >
-    <app-task-item
-      class="w-full h-full"
-      *ngFor="let task of tasks"
-      [taskId]="task.id"
-      (editTaskStatus)="onEditTaskStatus($event)"
-    ></app-task-item>
+    <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id">
+      <app-task-item
+        class="w-full h-full"
+        [taskId]="task.id"
+        (editTaskStatus)="onEditTaskStatus($event)"
+      ></app-task-item>
+    </li>
   </ul>
 </div>

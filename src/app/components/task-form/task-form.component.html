@@ -1,7 +1,13 @@
-<div class="col-md-6 w-1/4 h-full flex flex-col justify-center items-center bg-blue-200 rounded-lg">
+<div
+  class="col-md-6 w-1/4 max-lg:w-3/4 h-full flex flex-col justify-center items-center bg-blue-200 rounded-lg"
+>
   <h2 class="text-center font-bold h-1/5">Add Task</h2>
   <div class="card shadow-sm w-1/3 h-4/5 flex flex-col items-center">
-    <form class="h-full flex flex-col justify-between items-center" #myform="ngForm" (ngSubmit)="addTask(myform)">
+    <form
+      class="h-full flex flex-col justify-between items-center"
+      #myform="ngForm"
+      (ngSubmit)="myform.valid && addTask(myform)"
+    >
       <div class="form-group h-1/4">
         <input
           type="text"
@@ -9,6 +15,7 @@
           id="title"
           name="title"
           placeholder="Title"
+          required
           ngModel
         />
       </div>
@@ -19,15 +26,17 @@
           id="description"
           name="description"
           placeholder="Description"
+          required
           ngModel
         />
       </div>
       <div class="form-group relative inline-flex h-1/5">
         <label for="status">Status</label>
         <select
-          class="appearance-none border-slate-200 border-2 border-gray-200 rounded-lg text-gray-700 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+          class="appearance-none border-slate-200 border-2 rounded-lg text-gray-700 px-4 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
           id="status"
           name="status"
+          required
           ngModel
         >
           <option value="NOT_STARTED">NOT STARTED</option>
@@ -47,7 +56,12 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-primary h-1/4 bg-blue-800 text-slate-100 rounded-lg w-1/3">Submit</button>
+      <button
+        type="submit"
+        class="btn btn-primary h-1/4 bg-blue-800 text-slate-100 rounded-lg w-1/3"
+      >
+        Submit
+      </button>
     </form>
   </div>
 </div>

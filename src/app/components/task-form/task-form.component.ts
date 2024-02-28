@@ -9,33 +9,28 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-task-form',
   templateUrl: './task-form.component.html',
-  styleUrl: './task-form.component.css'
+  styleUrl: './task-form.component.css',
 })
 export class TaskFormComponent {
   newId$: Observable<number> | undefined;
-  constructor(private store: Store<State>) { }
-
-
+  constructor(private store: Store<State>) {}
 
   newTask = {
     id: 0,
     title: '',
     description: '',
-    status: TaskStatus.NOT_STARTED
+    status: TaskStatus.NOT_STARTED,
   };
 
-
-
   addTask(form: NgForm) {
-    this.newId$ = this.store.select(state => state.tasks.length);
-    this.newId$.subscribe(id => {
+    this.newId$ = this.store.select((state) => state.tasks.length);
+    this.newId$.subscribe((id) => {
       this.newTask = {
         id: id + 1,
         title: form.value.title,
         description: form.value.description,
-        status: form.value.status
+        status: form.value.status,
       };
-
     });
 
     // console.log(form.value);
