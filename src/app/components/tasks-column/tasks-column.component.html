@@ -1,26 +1,21 @@
 <div class="h-full max-sm:h-half-screen">
   <div
-    class="flex items-center justify-between w-full h-1/12 text-center font-bold bg-slate-300 mb-1 text-slate-800 p-2"
-  >
-    <h2 class="w-fit">
-      {{ status == TaskStatus.NOT_STARTED ? "Not Started" : "" }}
-      {{ status == TaskStatus.IN_PROGRESS ? "In Progress" : "" }}
-      {{ status == TaskStatus.FINISHED ? "Finished" : "" }}
+    class="flex items-center justify-between w-full h-1/12 text-center font-bold bg-slate-300 mb-1 text-slate-800 p-2">
+    <h2 class="w-fit" [ngSwitch]="status">
+      <span *ngSwitchCase="TaskStatus.NOT_STARTED">Not Started</span>
+      <span *ngSwitchCase="TaskStatus.IN_PROGRESS">In Progress</span>
+      <span *ngSwitchCase="TaskStatus.FINISHED">Finished</span>
     </h2>
   </div>
-  <ul
-    class="grid h-11/12 overflow-y-scroll max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2"
-    [ngClass]="{
-      'bg-slate-300': status == TaskStatus.FINISHED,
-      'bg-slate-100': status != TaskStatus.FINISHED
-    }"
-  >
-    <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id">
-      <app-task-item
-        class="w-full h-full"
-        [taskId]="task.id"
-        (editTaskStatus)="onEditTaskStatus($event)"
-      ></app-task-item>
-    </li>
-  </ul>
+  <div class="h-5/6 overflow-y-scroll" [ngClass]="{
+    'bg-slate-300': status === TaskStatus.FINISHED,
+    'bg-slate-100': status !== TaskStatus.FINISHED
+  }">
+    <ul class="grid max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2 grid-rows-4">
+      <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id">
+        <app-task-item class="w-full h-full" [taskId]="task.id" (editTaskStatus)="onEditTaskStatus($event)">
+        </app-task-item>
+      </li>
+    </ul>
+  </div>
 </div>
