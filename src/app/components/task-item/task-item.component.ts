@@ -14,7 +14,7 @@ export class TaskItemComponent {
   @Output() editTaskStatus = new EventEmitter<Task>();
 
   task: Task | undefined;
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<State>) { }
   ngOnInit() {
     this.store.select('tasks').subscribe((tasks) => {
       this.task = tasks.find((task) => task.id === this.taskId);
@@ -24,9 +24,7 @@ export class TaskItemComponent {
   onStatusChange(newStatus: TaskStatus) {
     if (this.task) {
       const updatedTask: Task = { ...this.task, status: newStatus };
-      this.store.dispatch(
-        new UpdateTaskStatusAction({ taskId: updatedTask.id, newStatus })
-      );
+      
       this.editTaskStatus.emit(updatedTask);
     }
   }

@@ -3,6 +3,8 @@ import { Task, TaskStatus } from '../../store/models/task.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/models/state.model';
+import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
+import { UpdateTaskAction } from '../../store/actions/task.action';
 
 @Component({
   selector: 'app-task-main',
@@ -10,6 +12,12 @@ import { State } from '../../store/models/state.model';
   styleUrl: './task-main.component.css',
 })
 export class TaskMainComponent {
+  onDrop(event: { task: Task; previousIndex: number; currentIndex: number }) {
+    console.log(event);
+    
+    this.store.dispatch(new UpdateTaskAction(event.task));
+  }
+
   columnToShow = TaskStatus.NOT_STARTED;
 
   allTasks$: Observable<Array<Task>> | undefined;
@@ -18,7 +26,7 @@ export class TaskMainComponent {
   tasksINPROGRESS$: Observable<Array<Task>> | undefined;
   tasksFINISHED$: Observable<Array<Task>> | undefined;
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<State>) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.store.select((store) => store.tasks);
@@ -36,4 +44,6 @@ export class TaskMainComponent {
   switchColumn(column: TaskStatus) {
     this.columnToShow = column;
   }
+
 }
+

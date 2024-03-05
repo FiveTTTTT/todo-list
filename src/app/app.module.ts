@@ -13,6 +13,8 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
 import { TaskMainComponent } from './components/task-main/task-main.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 
+import { DragDropModule } from '@angular/cdk/drag-drop';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +27,7 @@ import { TaskFormComponent } from './components/task-form/task-form.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DragDropModule,
     StoreModule.forRoot({
       tasks: TaskReducer,
     }),

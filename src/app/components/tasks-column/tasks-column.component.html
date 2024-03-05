@@ -11,8 +11,10 @@
     'bg-slate-300': status === TaskStatus.FINISHED,
     'bg-slate-100': status !== TaskStatus.FINISHED
   }">
-    <ul class="grid max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2 grid-rows-4">
-      <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id">
+    <ul (click)="theStatus()" class="grid max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2 grid-rows-4"
+      cdkDropList [cdkDropListData]="tasks" [cdkDropListConnectedTo]="connectedTo"
+      (cdkDropListDropped)="onDropListDropped($event)">
+      <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id" cdkDrag [cdkDragData]="task" cdkDragHandle>
         <app-task-item class="w-full h-full" [taskId]="task.id" (editTaskStatus)="onEditTaskStatus($event)">
         </app-task-item>
       </li>

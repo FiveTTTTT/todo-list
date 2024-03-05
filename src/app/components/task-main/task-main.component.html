@@ -1,22 +1,20 @@
-<div
-  class="flex flex-row max-sm:flex-col justify-around w-full h-full max-sm:max-h-fit"
->
-  <app-tasks-column
-    class="w-4/12 max-sm:w-full m-1"
-    [tasks]="(tasksNOTSTARTED$ | async)!"
-    [status]="TaskStatus.NOT_STARTED"
-  >
+<div class="flex flex-row max-sm:flex-col justify-around w-full h-full max-sm:max-h-fit">
+  <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksNOTSTARTED$ | async)!" (drop)="onDrop($event )"
+    [status]="TaskStatus.NOT_STARTED">
   </app-tasks-column>
-  <app-tasks-column
-    class="w-4/12 max-sm:w-full m-1"
-    [tasks]="(tasksINPROGRESS$ | async)!"
-    [status]="TaskStatus.IN_PROGRESS"
-  >
+  <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksINPROGRESS$ | async)!" (drop)="onDrop($event )"
+    [status]="TaskStatus.IN_PROGRESS">
   </app-tasks-column>
-  <app-tasks-column
-    class="w-4/12 max-sm:w-full m-1"
-    [tasks]="(tasksFINISHED$ | async)!"
-    [status]="TaskStatus.FINISHED"
-  >
+  <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksFINISHED$ | async)!" (drop)="onDrop($event )"
+    [status]="TaskStatus.FINISHED">
   </app-tasks-column>
 </div>
+
+<!-- <composantParent>
+  <composantColonne1>
+  </composantColonne1>
+  <composantColonne1>
+  </composantColonne1>
+  <composantColonne1>
+  </composantColonne1>
+</composantParent> -->
