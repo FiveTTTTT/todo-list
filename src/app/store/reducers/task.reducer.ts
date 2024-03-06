@@ -111,6 +111,8 @@ export function TaskReducer(
         case TaskActionTypes.UPDATE_TASK_STATUS:
             const { taskId, newStatus } = (action as UpdateTaskStatusAction).payload;
             return state.map(task => (task.id === taskId) ? { ...task, status: newStatus } : task);
+        case TaskActionTypes.REMOVE_TASK:
+            return state.filter(task => task.id !== (action as UpdateTaskAction).payload.id);
 
         default:
             return state;

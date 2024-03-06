@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskStatus } from '../../store/models/task.model';
 import { Store } from '@ngrx/store';
-import { UpdateTaskAction } from '../../store/actions/task.action';
+import { RemoveTaskAction, UpdateTaskAction } from '../../store/actions/task.action';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -28,6 +28,11 @@ export class TasksColumnComponent {
 
   onEditTaskStatus(task: Task) {
     this.store.dispatch(new UpdateTaskAction(task));
+  }
+  onDeleteTask(task: Task) {
+    console.log('delete task', task);
+    
+    this.store.dispatch(new RemoveTaskAction(task));
   }
 
   currentColumn: string | undefined;

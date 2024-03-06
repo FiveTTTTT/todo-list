@@ -29,7 +29,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     FormsModule,
     DragDropModule,
     StoreModule.forRoot({
-      tasks: TaskReducer,
+      tasks: TaskReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // restreint l'accès au DevTools en mode production

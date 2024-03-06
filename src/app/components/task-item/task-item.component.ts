@@ -12,6 +12,7 @@ import { UpdateTaskStatusAction } from '../../store/actions/task.action';
 export class TaskItemComponent {
   @Input() taskId: Number | undefined;
   @Output() editTaskStatus = new EventEmitter<Task>();
+  @Output() deleteTask = new EventEmitter<Task>();
 
   task: Task | undefined;
   constructor(private store: Store<State>) { }
@@ -26,6 +27,13 @@ export class TaskItemComponent {
       const updatedTask: Task = { ...this.task, status: newStatus };
       
       this.editTaskStatus.emit(updatedTask);
+    }
+  }
+  onDeleteTask() {
+    console.log('delete task', this.task);
+    
+    if (this.task) {
+      this.deleteTask.emit(this.task);
     }
   }
 }
