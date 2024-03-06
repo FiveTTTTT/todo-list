@@ -1,5 +1,5 @@
-import { Task, TaskStatus } from "../models/task.model";
-import { AddTaskAction, TaskActionTypes, UpdateTaskAction, UpdateTaskStatusAction } from "../actions/task.action";
+import { Task, TaskStatus } from "./task.model";
+import { AddTaskAction, TaskActionTypes, UpdateTaskAction, UpdateTaskStatusAction } from "./task.action";
 import { Action } from "@ngrx/store";
 
 const initialState: Array<Task> = [

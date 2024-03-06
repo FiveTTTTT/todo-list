@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Task, TaskStatus } from './store/models/task.model';
+import { Task, TaskStatus } from './store/task/task.model';
 import { State } from './store/models/state.model';
 import { NgForm } from '@angular/forms';
-import { AddTaskAction } from './store/actions/task.action';
+import { AddTaskAction } from './store/task/task.action';
 
 @Component({
   selector: 'app-root',

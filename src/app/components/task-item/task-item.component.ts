@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Task, TaskStatus } from '../../store/models/task.model';
+import { Task, TaskStatus } from '../../store/task/task.model';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/models/state.model';
-import { UpdateTaskStatusAction } from '../../store/actions/task.action';
+import { UpdateTaskStatusAction } from '../../store/task/task.action';
 
 @Component({
   selector: 'app-task-item',

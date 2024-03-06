@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
-import { Task, TaskStatus } from '../../store/models/task.model';
+import { Task, TaskStatus } from '../../store/task/task.model';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/models/state.model';
 import { CdkDragDrop, transferArrayItem } from '@angular/cdk/drag-drop';
-import { UpdateTaskAction } from '../../store/actions/task.action';
+import { UpdateTaskAction } from '../../store/task/task.action';
 
 @Component({
   selector: 'app-task-main',

@@ -1,5 +1,5 @@
 import { Action } from "@ngrx/store";
-import { Task, TaskStatus } from "../models/task.model";
+import { Task, TaskStatus } from "./task.model";
 
 export enum TaskActionTypes {
     ADD_TASK = '[TASK] Add Task',
