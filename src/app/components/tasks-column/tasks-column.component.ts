@@ -10,32 +10,23 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
   styleUrl: './tasks-column.component.css',
 })
 export class TasksColumnComponent {
-  // onDrop($event: CdkDragDrop<readonly Task[], any, any>) {
-  //   console.log($event);
-
-  //   throw new Error('Method not implemented.');
-  // }
   @Input() tasks: Readonly<Array<Task>> = [];
   @Input() status: String | undefined;
   @Output() drop = new EventEmitter<{ task: Task; previousIndex: number; currentIndex: number }>();
 
   TaskStatus = TaskStatus;
-
-  connectedTo = [TaskStatus.NOT_STARTED, TaskStatus.IN_PROGRESS, TaskStatus.FINISHED];
+  
+  connectedTo: string[] = ['cdk-drop-list-0', 'cdk-drop-list-1', 'cdk-drop-list-2'];
 
 
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.connectedTo = [TaskStatus.NOT_STARTED, TaskStatus.IN_PROGRESS, TaskStatus.FINISHED];
+    this.connectedTo = ['cdk-drop-list-0', 'cdk-drop-list-1', 'cdk-drop-list-2'];;
     this.connectedTo = this.connectedTo.filter(status => status !== this.status);
   }
 
   onEditTaskStatus(task: Task) {
-    console.log(task);
-    // this.store.dispatch(
-    //   new UpdateTaskStatusAction({ taskId: updatedTask.id, newStatus })
-    // );
     this.store.dispatch(new UpdateTaskAction(task));
   }
 
@@ -47,24 +38,30 @@ export class TasksColumnComponent {
 
   onDropListDropped(event: CdkDragDrop<readonly Task[]>) {
     if (event.previousContainer === event.container) {
-      console.log("same container");
-      
-      console.log(event.container)
       const mutableData = [...event.container.data];
       moveItemInArray(mutableData, event.previousIndex, event.currentIndex);
       event.container.data = mutableData;
-    } else {
-      console.log("different container");
-      console.log(event.container);
 
-      // Déplacer l'élément d'une liste à l'autre
+    } else {      
       const task = event.previousContainer.data[event.previousIndex];
-      this.drop.emit({ task, previousIndex: event.previousIndex, currentIndex: event.currentIndex });
+
+      let updatedTask: Task;
+
+      switch (event.container.id) {
+        case 'cdk-drop-list-0':
+          updatedTask = { ...task, status: TaskStatus.NOT_STARTED };
+          break;
+        case 'cdk-drop-list-1':
+          updatedTask = { ...task, status: TaskStatus.IN_PROGRESS };
+          break;
+        case 'cdk-drop-list-2':
+          updatedTask = { ...task, status: TaskStatus.FINISHED };
+          break;
+        default:
+          updatedTask = task;
+      }
+
+      this.drop.emit({ task: updatedTask, previousIndex: event.previousIndex, currentIndex: event.currentIndex });
     }
-  }
-
-  theStatus() {
-    console.log(this.connectedTo);
-
   }
 }

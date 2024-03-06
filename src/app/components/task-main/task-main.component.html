@@ -1,20 +1,12 @@
 <div class="flex flex-row max-sm:flex-col justify-around w-full h-full max-sm:max-h-fit">
   <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksNOTSTARTED$ | async)!" (drop)="onDrop($event )"
-    [status]="TaskStatus.NOT_STARTED">
+    [status]="TaskStatus.NOT_STARTED" cdkDropListGroup>
   </app-tasks-column>
   <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksINPROGRESS$ | async)!" (drop)="onDrop($event )"
-    [status]="TaskStatus.IN_PROGRESS">
+    [status]="TaskStatus.IN_PROGRESS" cdkDropListGroup>
   </app-tasks-column>
   <app-tasks-column class="w-4/12 max-sm:w-full m-1" [tasks]="(tasksFINISHED$ | async)!" (drop)="onDrop($event )"
-    [status]="TaskStatus.FINISHED">
+    [status]="TaskStatus.FINISHED" cdkDropListGroup>
   </app-tasks-column>
 </div>
-
-<!-- <composantParent>
-  <composantColonne1>
-  </composantColonne1>
-  <composantColonne1>
-  </composantColonne1>
-  <composantColonne1>
-  </composantColonne1>
-</composantParent> -->
+```

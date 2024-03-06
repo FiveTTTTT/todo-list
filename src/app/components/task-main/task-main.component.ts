@@ -12,9 +12,7 @@ import { UpdateTaskAction } from '../../store/actions/task.action';
   styleUrl: './task-main.component.css',
 })
 export class TaskMainComponent {
-  onDrop(event: { task: Task; previousIndex: number; currentIndex: number }) {
-    console.log(event);
-    
+  onDrop(event: { task: Task; previousIndex: number; currentIndex: number }) {   
     this.store.dispatch(new UpdateTaskAction(event.task));
   }
 

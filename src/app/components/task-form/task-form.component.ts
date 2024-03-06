@@ -33,24 +33,7 @@ export class TaskFormComponent {
       };
     });
 
-    // console.log(form.value);
-    // this.newTask = {
-    //   id: this.newId + 1,
-    //   title: form.value.title,
-    //   description: form.value.description,
-    //   status: form.value.status,
-    //   color: ''
-    // };
-
     this.store.dispatch(new AddTaskAction(this.newTask));
     form.reset();
-    // this.newId = this.store.select(state => state.tasks.length);
-    // this.newTask = {
-    //   id: Math.floor(Math.random() * 1000) + 1,
-    //   title: '',
-    //   description: '',
-    //   status: TaskStatus.NOT_STARTED,
-    //   color: ''
-    // };
   }
 }
