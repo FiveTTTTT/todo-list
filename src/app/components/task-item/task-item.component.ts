@@ -14,26 +14,48 @@ export class TaskItemComponent {
   @Output() editTaskStatus = new EventEmitter<Task>();
   @Output() deleteTask = new EventEmitter<Task>();
 
+  truncateTitle: boolean = false;
+  truncateDescription: boolean = false;
   task: Task | undefined;
   constructor(private store: Store<State>) { }
   ngOnInit() {
+
+    this.truncateTitle = false;
+    this.truncateDescription = false;
     this.store.select('tasks').subscribe((tasks) => {
-      this.task = tasks.find((task) => task.id === this.taskId);
+      this.task = tasks.find((task) => {
+        this.checkTextLength(task.title, "title");
+        this.checkTextLength(task.description, "description");
+        return task.id === this.taskId
+      });
     });
   }
 
-  onStatusChange(newStatus: TaskStatus) {
-    if (this.task) {
-      const updatedTask: Task = { ...this.task, status: newStatus };
-      
-      this.editTaskStatus.emit(updatedTask);
+  checkTextLength(text: string, type: string) {
+    if (text.length > 20 && type === "title") {
+      this.truncateTitle = true;
+    } else {
+      if (text.length > 20 && type === "description") {
+        this.truncateDescription = true;
+      }
+      else {
+        this.truncateTitle = false;
+        this.truncateDescription = false;
+      }
     }
   }
-  onDeleteTask() {
-    console.log('delete task', this.task);
-    
-    if (this.task) {
-      this.deleteTask.emit(this.task);
+
+    onStatusChange(newStatus: TaskStatus) {
+      if (this.task) {
+        const updatedTask: Task = { ...this.task, status: newStatus };
+        this.editTaskStatus.emit(updatedTask);
+      }
+    }
+    onDeleteTask() {
+      console.log('delete task', this.task);
+
+      if (this.task) {
+        this.deleteTask.emit(this.task);
+      }
     }
   }
-}

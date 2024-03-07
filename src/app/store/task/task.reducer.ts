@@ -78,12 +78,12 @@ const initialState: Array<Task> = [
     {
         id: 13,
         title: 'Thirteenth Task',
-        description: 'This is the thirteenth task',
+        description: 'This is the thirteenth task This is the thirteenth task',
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 14,
-        title: 'Fourteenth Task',
+        title: 'Fourteenth Task Fourteenth Task',
         description: 'This is the fourteenth task',
         status: TaskStatus.IN_PROGRESS
     },
