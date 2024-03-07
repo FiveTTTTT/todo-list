@@ -13,7 +13,10 @@ import { Observable } from 'rxjs';
 })
 export class TaskFormComponent {
   newId$: Observable<number> | undefined;
-  constructor(private store: Store<State>) {}
+  title: string = "";
+  description: string = "";
+  status: any;
+  constructor(private store: Store<State>) { }
 
   newTask = {
     id: 0,
