@@ -23,7 +23,7 @@ export class TaskFormComponent {
   };
 
   addTask(form: NgForm) {
-    this.newId$ = this.store.select((state) => state.tasks.length);
+    this.newId$ = this.store.select((state) => state.tasks[state.tasks.length - 1].id);
     this.newId$.subscribe((id) => {
       this.newTask = {
         id: id + 1,
