@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { TaskReducer } from './store/reducers/task.reducer';
+import { TaskReducer } from './store/task/task.reducer';
 import { FormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -30,6 +30,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DragDropModule,
     StoreModule.forRoot({
       tasks: TaskReducer,
+      
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // restreint l'accès au DevTools en mode production

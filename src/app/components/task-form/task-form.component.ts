@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AddTaskAction } from '../../store/actions/task.action';
-import { TaskStatus } from '../../store/models/task.model';
+import { AddTaskAction } from '../../store/task/task.action';
+import { TaskStatus } from '../../store/task/task.model';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/models/state.model';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ export class TaskFormComponent {
   };
 
   addTask(form: NgForm) {
-    this.newId$ = this.store.select((state) => state.tasks.length);
+    this.newId$ = this.store.select((state) => state.tasks[state.tasks.length - 1].id);
     this.newId$.subscribe((id) => {
       this.newTask = {
         id: id + 1,
