@@ -7,90 +7,105 @@ const initialState: Array<Task> = [
         id: 1,
         title: 'First Task',
         description: 'This is the first task',
+        created: new Date(),
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 2,
         title: 'Second Task',
         description: 'This is the second task',
+        created: new Date(),
         status: TaskStatus.IN_PROGRESS
     },
     {
         id: 3,
         title: 'Third Task',
         description: 'This is the third task',
+        created: new Date(),
         status: TaskStatus.FINISHED
     },
     {
         id: 4,
         title: 'Fourth Task',
         description: 'This is the fourth task',
+        created: new Date(),
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 5,
         title: 'Fifth Task',
         description: 'This is the fifth task',
+        created: new Date(),
         status: TaskStatus.IN_PROGRESS
     },
     {
         id: 6,
         title: 'Sixth Task',
         description: 'This is the sixth task',
+        created: new Date(),
         status: TaskStatus.FINISHED
     },
     {
         id: 7,
         title: 'Seventh Task',
         description: 'This is the seventh task',
+        created: new Date(),
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 8,
         title: 'Eighth Task',
         description: 'This is the eighth task',
+        created: new Date(),
         status: TaskStatus.IN_PROGRESS
     },
     {
         id: 9,
         title: 'Ninth Task',
         description: 'This is the ninth task',
+        created: new Date(),
         status: TaskStatus.FINISHED
     },
     {
         id: 10,
         title: 'Tenth Task',
         description: 'This is the tenth task',
+        created: new Date(),
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 11,
         title: 'Eleventh Task',
         description: 'This is the eleventh task',
+        created: new Date(),
         status: TaskStatus.IN_PROGRESS
     },
     {
         id: 12,
         title: 'Twelfth Task',
         description: 'This is the twelfth task',
+        created: new Date(),
         status: TaskStatus.FINISHED
     },
     {
         id: 13,
         title: 'Thirteenth Task',
         description: 'This is the thirteenth task This is the thirteenth task',
+        created: new Date(),
         status: TaskStatus.NOT_STARTED
     },
     {
         id: 14,
         title: 'Fourteenth Task Fourteenth Task',
         description: 'This is the fourteenth task',
+        created: new Date(),
         status: TaskStatus.IN_PROGRESS
     },
     {
         id: 15,
         title: 'Fifteenth Task',
         description: 'This is the fifteenth task',
+        created: new Date(),
         status: TaskStatus.FINISHED
     }
 ];
@@ -110,7 +125,10 @@ export function TaskReducer(
             return state.map(task => (task.id === updatedTask.id) ? updatedTask : task);
         case TaskActionTypes.UPDATE_TASK_STATUS:
             const { taskId, newStatus } = (action as UpdateTaskStatusAction).payload;
-            return state.map(task => (task.id === taskId) ? { ...task, status: newStatus } : task);
+            return state.map(task => (task.id === taskId) ? {
+                ...task, created: new Date(),
+                status: newStatus
+            } : task);
         case TaskActionTypes.REMOVE_TASK:
             return state.filter(task => task.id !== (action as UpdateTaskAction).payload.id);
 

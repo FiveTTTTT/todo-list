@@ -22,8 +22,17 @@ export class TaskFormComponent {
     id: 0,
     title: '',
     description: '',
+    created: new Date(),
     status: TaskStatus.NOT_STARTED,
   };
+
+  resetCreateTaskForm(form: NgForm) {
+    form.reset();
+    form.resetForm();
+    this.title = "";
+    this.description = "";
+    this.status = null;
+  }
 
   addTask(form: NgForm) {
     this.newId$ = this.store.select((state) => state.tasks[state.tasks.length - 1].id);
@@ -32,11 +41,12 @@ export class TaskFormComponent {
         id: id + 1,
         title: form.value.title,
         description: form.value.description,
+        created: new Date(),
         status: form.value.status,
       };
     });
 
     this.store.dispatch(new AddTaskAction(this.newTask));
-    form.reset();
+    this.resetCreateTaskForm(form);
   }
 }
