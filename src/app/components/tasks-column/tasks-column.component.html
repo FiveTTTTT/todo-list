@@ -1,6 +1,5 @@
 <div class="h-full max-sm:h-half-screen">
-  <div
-    class="flex items-center justify-between w-full h-1/12 text-center font-bold bg-slate-300 mb-1 text-slate-800 p-2">
+  <div class="flex items-center justify-between w-full h-1/12 text-center font-bold bg-slate-300 mb-1 text-slate-800 p-2">
     <h2 class="w-fit" [ngSwitch]="status">
       <span *ngSwitchCase="TaskStatus.NOT_STARTED">Not Started</span>
       <span *ngSwitchCase="TaskStatus.IN_PROGRESS">In Progress</span>
@@ -10,12 +9,12 @@
   <div class="h-11/12 overflow-y-scroll" [ngClass]="{
     'bg-slate-300': status === TaskStatus.FINISHED,
     'bg-slate-100': status !== TaskStatus.FINISHED
-  }">
-    <ul class="grid max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2 grid-rows-4"
-      cdkDropList [cdkDropListData]="tasks" [cdkDropListConnectedTo]="connectedTo"
-      (cdkDropListDropped)="onDropListDropped($event)">
-      <li class="w-full h-full" *ngFor="let task of tasks" [id]="task.id" cdkDrag [cdkDragData]="task" cdkDragHandle>
-        <app-task-item class="w-full h-full" [taskId]="task.id" (editTaskStatus)="onEditTaskStatus($event)" (deleteTask)="onDeleteTask(task)">
+  }"
+  cdkDropList [cdkDropListData]="tasks" [cdkDropListConnectedTo]="connectedTo"
+  (cdkDropListDropped)="onDropListDropped($event)">
+    <ul class="grid max-sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 p-2 grid-rows-4">
+      <li class="min-h-" *ngFor="let task of tasks" [id]="task.id" cdkDrag [cdkDragData]="task" cdkDragHandle>
+        <app-task-item [taskId]="task.id" (editTaskStatus)="onEditTaskStatus($event)" (deleteTask)="onDeleteTask(task)">
         </app-task-item>
       </li>
     </ul>

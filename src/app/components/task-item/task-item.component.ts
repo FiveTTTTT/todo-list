@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskStatus } from '../../store/task/task.model';
 import { Store } from '@ngrx/store';
 import { State } from '../../store/models/state.model';
-import { UpdateTaskStatusAction } from '../../store/task/task.action';
 
 @Component({
   selector: 'app-task-item',
@@ -17,6 +16,7 @@ export class TaskItemComponent {
   truncateTitle: boolean = false;
   truncateDescription: boolean = false;
   task: Task | undefined;
+  showInfosModal: Boolean = false;
   constructor(private store: Store<State>) { }
   ngOnInit() {
 
@@ -45,17 +45,15 @@ export class TaskItemComponent {
     }
   }
 
-    onStatusChange(newStatus: TaskStatus) {
-      if (this.task) {
-        const updatedTask: Task = { ...this.task, status: newStatus };
-        this.editTaskStatus.emit(updatedTask);
-      }
-    }
-    onDeleteTask() {
-      console.log('delete task', this.task);
-
-      if (this.task) {
-        this.deleteTask.emit(this.task);
-      }
+  statusChange(newStatus: TaskStatus) {
+    if (this.task) {
+      const updatedTask: Task = { ...this.task, status: newStatus };
+      this.editTaskStatus.emit(updatedTask);
     }
   }
+  removeTask() {
+    if (this.task) {
+      this.deleteTask.emit(this.task);
+    }
+  }
+}

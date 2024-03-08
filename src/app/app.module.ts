@@ -14,7 +14,6 @@ import { TaskMainComponent } from './components/task-main/task-main.component';
 import { TaskFormComponent } from './components/task-form/task-form.component';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { TaskInfosComponent } from './components/task-infos/task-infos.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +21,7 @@ import { TaskInfosComponent } from './components/task-infos/task-infos.component
     TasksColumnComponent,
     TaskItemComponent,
     TaskMainComponent,
-    TaskFormComponent,
-    TaskInfosComponent,
+    TaskFormComponent
   ],
   imports: [
     BrowserModule,

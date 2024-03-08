@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Task, TaskStatus } from '../../store/task/task.model';
 import { Store } from '@ngrx/store';
 import { RemoveTaskAction, UpdateTaskAction } from '../../store/task/task.action';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-tasks-column',
