@@ -22,7 +22,7 @@ export class TasksColumnComponent {
   constructor(private store: Store) { }
 
   ngOnInit() {
-    this.connectedTo = ['cdk-drop-list-0', 'cdk-drop-list-1', 'cdk-drop-list-2'];;
+    this.connectedTo = ['cdk-drop-list-0', 'cdk-drop-list-1', 'cdk-drop-list-2'];
     this.connectedTo = this.connectedTo.filter(status => status !== this.status);
   }
 
@@ -33,12 +33,6 @@ export class TasksColumnComponent {
     console.log('delete task', task);
     
     this.store.dispatch(new RemoveTaskAction(task));
-  }
-
-  currentColumn: string | undefined;
-
-  showColumn(column: string) {
-    this.currentColumn = column;
   }
 
   onDropListDropped(event: CdkDragDrop<readonly Task[]>) {
